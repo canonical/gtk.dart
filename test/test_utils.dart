@@ -5,7 +5,7 @@ import 'dart:ffi' as ffi;
 import 'package:ffi/ffi.dart' as ffi;
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gtk_settings/src/libgtk.dart';
+import 'package:gtk/src/libgtk.dart';
 import 'package:mockito/mockito.dart';
 
 import 'test_utils.mocks.dart';

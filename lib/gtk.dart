@@ -1,4 +1,4 @@
-library gtk_settings;
+library gtk;
 
 export 'src/constants.dart';
 export 'src/gtk_settings_stub.dart'

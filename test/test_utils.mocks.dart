@@ -2,7 +2,7 @@
 
 import 'dart:ffi' as ffi;
 
-import 'package:gtk_settings/src/libgtk.g.dart';
+import 'package:gtk/src/libgtk.g.dart';
 import 'package:mockito/mockito.dart';
 
 class MockLibGtk extends Mock implements LibGtk {

@@ -1,4 +1,4 @@
-name: gtk_settings_example
+name: gtk_example
 publish_to: 'none'
 
 environment:
@@ -7,7 +7,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  gtk_settings:
+  gtk:
     path: ../
   provider: ^6.0.5
   yaru: ^0.4.7

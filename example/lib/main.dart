@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gtk_settings/gtk_settings.dart';
+import 'package:gtk/gtk.dart';
 import 'package:provider/provider.dart';
 import 'package:yaru/yaru.dart';
 

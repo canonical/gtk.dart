@@ -1,8 +1,8 @@
-name: gtk_settings
-description: GtkSettings for Flutter.
-homepage: https://github.com/ubuntu-flutter-community/gtk_settings.dart
-repository: https://github.com/ubuntu-flutter-community/gtk_settings.dart
-issue_tracker: https://github.com/ubuntu-flutter-community/gtk_settings.dart/issues
+name: gtk
+description: GTK+ utities for Flutter Linux applications.
+homepage: https://github.com/ubuntu-flutter-community/gtk.dart
+repository: https://github.com/ubuntu-flutter-community/gtk.dart
+issue_tracker: https://github.com/ubuntu-flutter-community/gtk.dart/issues
 version: 0.0.1
 
 environment:
@@ -26,4 +26,4 @@ flutter:
   plugin:
     platforms:
       linux:
-        pluginClass: GtkSettingsPlugin
+        pluginClass: GtkPlugin

@@ -1,7 +1,7 @@
 import 'package:ffi/ffi.dart' as ffi;
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gtk_settings/gtk_settings.dart';
-import 'package:gtk_settings/src/libgtk.g.dart' hide GtkSettings;
+import 'package:gtk/gtk.dart';
+import 'package:gtk/src/libgtk.g.dart' hide GtkSettings;
 
 import 'test_utils.dart';
 

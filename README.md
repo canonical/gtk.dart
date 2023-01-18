@@ -1,4 +1,4 @@
-# GtkSettings for Flutter
+# GTK+ utities for Flutter Linux applications.
 
 [![license: MPL](https://img.shields.io/badge/license-MPL-magenta.svg)](https://opensource.org/licenses/MPL-2.0)
 [![CI](https://github.com/ubuntu-flutter-community/gtk_settings.dart/actions/workflows/ci.yaml/badge.svg)](https://github.com/ubuntu-flutter-community/gtk_settings.dart/actions/workflows/ci.yaml)
