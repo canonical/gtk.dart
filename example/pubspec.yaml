@@ -5,11 +5,11 @@ environment:
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
-  async: ^2.10.0
   flutter:
     sdk: flutter
   gtk_settings:
     path: ../
+  provider: ^6.0.5
   yaru: ^0.4.7
 
 dev_dependencies:

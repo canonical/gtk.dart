@@ -1,0 +1,37 @@
+name: LibGtk
+description: GTK+ 3.0
+output: 'lib/src/libgtk.g.dart'
+preamble: |
+  // coverage:ignore-file
+  // ignore_for_file: non_constant_identifier_names
+  // ignore_for_file: unused_field
+headers:
+  entry-points:
+    - '/usr/include/gtk-3.0/gtk/gtk.h'
+compiler-opts:
+  - '-DGTK_COMPILATION'
+  - '-I/usr/include/gtk-3.0'
+  - '-I/usr/include/glib-2.0'
+  - '-I/usr/lib/x86_64-linux-gnu/glib-2.0/include'
+exclude-all-by-default: true
+functions:
+  include:
+    - 'gtk_settings_get_default'
+    - 'gtk_settings_reset_property'
+    - 'g_object_get_property'
+    - 'g_object_set_property'
+    - 'g_value_get_.*'
+    - 'g_value_set_.*'
+macros:
+  include:
+    - 'G_TYPE_.*'
+structs:
+  include:
+    - '_GtkSettings'
+    - '_GObject'
+    - '_GValue'
+typedefs:
+  include:
+    - 'GtkSettings'
+    - 'GObject'
+    - 'GValue'
