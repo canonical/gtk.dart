@@ -20,6 +20,7 @@ functions:
     - 'gtk_settings_reset_property'
     - 'g_object_get_property'
     - 'g_object_set_property'
+    - 'g_value_init'
     - 'g_value_get_.*'
     - 'g_value_set_.*'
 macros:

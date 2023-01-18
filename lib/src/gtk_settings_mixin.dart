@@ -15,4 +15,5 @@ mixin GtkSettingsMixin on ChangeNotifier {
   void setFloatValue(String key, double value);
   void setDoubleValue(String key, double value);
   void setStringValue(String key, String value);
+  void resetValue(String key);
 }
