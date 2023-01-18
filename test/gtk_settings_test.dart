@@ -28,7 +28,7 @@ void main() {
       settings
           .notifyValue('boolean')
           .listen(expectAsync1((value) => expect(value, false), count: 1));
-      await receiveMethodCall('notify', 'boolean');
+      await receiveMethodCall('gtk/settings', 'notify', 'boolean');
       expect(wasNotified, ++expectedNotified);
 
       settings.resetValue('boolean');
@@ -61,13 +61,13 @@ void main() {
       settings
           .notifyValue('char')
           .listen(expectAsync1((value) => expect(value, -34), count: 1));
-      await receiveMethodCall('notify', 'char');
+      await receiveMethodCall('gtk/settings', 'notify', 'char');
       expect(wasNotified, ++expectedNotified);
 
       settings
           .notifyValue('uchar')
           .listen(expectAsync1((value) => expect(value, 56), count: 1));
-      await receiveMethodCall('notify', 'uchar');
+      await receiveMethodCall('gtk/settings', 'notify', 'uchar');
       expect(wasNotified, ++expectedNotified);
 
       settings.resetValue('char');
@@ -103,13 +103,13 @@ void main() {
       settings
           .notifyValue('int')
           .listen(expectAsync1((value) => expect(value, -456), count: 1));
-      await receiveMethodCall('notify', 'int');
+      await receiveMethodCall('gtk/settings', 'notify', 'int');
       expect(wasNotified, ++expectedNotified);
 
       settings
           .notifyValue('uint')
           .listen(expectAsync1((value) => expect(value, 789), count: 1));
-      await receiveMethodCall('notify', 'uint');
+      await receiveMethodCall('gtk/settings', 'notify', 'uint');
       expect(wasNotified, ++expectedNotified);
 
       settings.resetValue('int');
@@ -145,13 +145,13 @@ void main() {
       settings
           .notifyValue('long')
           .listen(expectAsync1((value) => expect(value, -987654321), count: 1));
-      await receiveMethodCall('notify', 'long');
+      await receiveMethodCall('gtk/settings', 'notify', 'long');
       expect(wasNotified, ++expectedNotified);
 
       settings
           .notifyValue('ulong')
           .listen(expectAsync1((value) => expect(value, 987654321), count: 1));
-      await receiveMethodCall('notify', 'ulong');
+      await receiveMethodCall('gtk/settings', 'notify', 'ulong');
       expect(wasNotified, ++expectedNotified);
 
       settings.resetValue('long');
@@ -187,13 +187,13 @@ void main() {
       settings
           .notifyValue('int64')
           .listen(expectAsync1((value) => expect(value, -987654321), count: 1));
-      await receiveMethodCall('notify', 'int64');
+      await receiveMethodCall('gtk/settings', 'notify', 'int64');
       expect(wasNotified, ++expectedNotified);
 
       settings
           .notifyValue('uint64')
           .listen(expectAsync1((value) => expect(value, 987654321), count: 1));
-      await receiveMethodCall('notify', 'uint64');
+      await receiveMethodCall('gtk/settings', 'notify', 'uint64');
       expect(wasNotified, ++expectedNotified);
 
       settings.resetValue('int64');
@@ -229,13 +229,13 @@ void main() {
       settings.notifyValue('float').listen(expectAsync1(
           (value) => expect(value, closeTo(789.012, 0.0001)),
           count: 1));
-      await receiveMethodCall('notify', 'float');
+      await receiveMethodCall('gtk/settings', 'notify', 'float');
       expect(wasNotified, ++expectedNotified);
 
       settings
           .notifyValue('double')
           .listen(expectAsync1((value) => expect(value, 789012.345), count: 1));
-      await receiveMethodCall('notify', 'double');
+      await receiveMethodCall('gtk/settings', 'notify', 'double');
       expect(wasNotified, ++expectedNotified);
 
       settings.resetValue('float');
@@ -266,13 +266,13 @@ void main() {
       settings
           .notifyValue('string')
           .listen(expectAsync1((value) => expect(value, 'bar'), count: 1));
-      await receiveMethodCall('notify', 'string');
+      await receiveMethodCall('gtk/settings', 'notify', 'string');
       expect(wasNotified, ++expectedNotified);
 
       settings.resetValue('string');
       expect(settings.getValue('string'), isNull);
 
-      await receiveMethodCall('notify', 'other');
+      await receiveMethodCall('gtk/settings', 'notify', 'other');
       expect(wasNotified, ++expectedNotified);
     });
   });
@@ -288,7 +288,7 @@ void main() {
       var expectedNotified = 0;
       settings.addListener(() => ++wasNotified);
 
-      await receiveMethodCall('notify', 'other');
+      await receiveMethodCall('gtk/settings', 'notify', 'other');
       expect(wasNotified, ++expectedNotified);
     });
   });
