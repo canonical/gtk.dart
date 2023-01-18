@@ -1,5 +1,8 @@
 name: gtk_settings
 description: GtkSettings for Flutter.
+homepage: https://github.com/ubuntu-flutter-community/gtk_settings.dart
+repository: https://github.com/ubuntu-flutter-community/gtk_settings.dart
+issue_tracker: https://github.com/ubuntu-flutter-community/gtk_settings.dart/issues
 version: 0.0.1
 
 environment:
