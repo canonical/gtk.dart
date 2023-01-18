@@ -44,4 +44,7 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
 
   @override
   void setStringValue(String key, String value) {}
+
+  @override
+  void resetValue(String key) {}
 }

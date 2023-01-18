@@ -1,12 +1,16 @@
 import 'dart:ffi' as ffi;
 
 import 'package:ffi/ffi.dart' as ffi;
+import 'package:meta/meta.dart';
 
 import 'libgtk.g.dart';
 export 'libgtk.g.dart';
 
 LibGtk? _lib;
 LibGtk get lib => _lib ??= LibGtk(ffi.DynamicLibrary.open('libgtk-3.so.0'));
+
+@visibleForTesting
+void overrideLibGtkForTesting(LibGtk lib) => _lib = lib;
 
 extension GValueX on ffi.Pointer<GValue> {
   Object? toDart() {

@@ -22,6 +22,23 @@ class LibGtk {
           lookup)
       : _lookup = lookup;
 
+  ffi.Pointer<GValue> g_value_init(
+    ffi.Pointer<GValue> value,
+    int g_type,
+  ) {
+    return _g_value_init(
+      value,
+      g_type,
+    );
+  }
+
+  late final _g_value_initPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<GValue> Function(
+              ffi.Pointer<GValue>, ffi.UnsignedLong)>>('g_value_init');
+  late final _g_value_init = _g_value_initPtr
+      .asFunction<ffi.Pointer<GValue> Function(ffi.Pointer<GValue>, int)>();
+
   void g_value_set_instance(
     ffi.Pointer<GValue> value,
     ffi.Pointer<ffi.Void> instance,
