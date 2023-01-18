@@ -334,36 +334,6 @@ class LibGtk {
   late final _g_value_get_flags =
       _g_value_get_flagsPtr.asFunction<int Function(ffi.Pointer<GValue>)>();
 
-  void g_value_set_char(
-    ffi.Pointer<GValue> value,
-    int v_char,
-  ) {
-    return _g_value_set_char(
-      value,
-      v_char,
-    );
-  }
-
-  late final _g_value_set_charPtr = _lookup<
-          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<GValue>, ffi.Char)>>(
-      'g_value_set_char');
-  late final _g_value_set_char = _g_value_set_charPtr
-      .asFunction<void Function(ffi.Pointer<GValue>, int)>();
-
-  int g_value_get_char(
-    ffi.Pointer<GValue> value,
-  ) {
-    return _g_value_get_char(
-      value,
-    );
-  }
-
-  late final _g_value_get_charPtr =
-      _lookup<ffi.NativeFunction<ffi.Char Function(ffi.Pointer<GValue>)>>(
-          'g_value_get_char');
-  late final _g_value_get_char =
-      _g_value_get_charPtr.asFunction<int Function(ffi.Pointer<GValue>)>();
-
   void g_value_set_schar(
     ffi.Pointer<GValue> value,
     int v_char,

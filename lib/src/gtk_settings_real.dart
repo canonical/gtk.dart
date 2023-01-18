@@ -68,7 +68,7 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
     ffi.using((arena) {
       final gvalue = arena<GValue>();
       lib.g_value_init(gvalue, G_TYPE_CHAR);
-      lib.g_value_set_char(gvalue, value);
+      lib.g_value_set_schar(gvalue, value);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
   }
