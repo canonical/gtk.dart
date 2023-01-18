@@ -18,7 +18,7 @@ extension GValueX on ffi.Pointer<GValue> {
       case G_TYPE_BOOLEAN:
         return lib.g_value_get_boolean(this) != 0;
       case G_TYPE_CHAR:
-        return lib.g_value_get_char(this);
+        return lib.g_value_get_schar(this);
       case G_TYPE_UCHAR:
         return lib.g_value_get_uchar(this);
       case G_TYPE_INT:

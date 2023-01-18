@@ -23,6 +23,10 @@ functions:
     - 'g_value_init'
     - 'g_value_get_.*'
     - 'g_value_set_.*'
+  exclude:
+    # deprecated
+    - 'g_value_get_char'
+    - 'g_value_set_char'
 macros:
   include:
     - 'G_TYPE_.*'
