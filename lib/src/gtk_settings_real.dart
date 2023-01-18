@@ -34,8 +34,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
     });
   }
 
-  Stream<Object?> notifyValue(String key) async* {
-    yield* _controller.stream
+  Stream<Object?> notifyValue(String key) {
+    return _controller.stream
         .where((event) => event == key)
         .map((event) => getValue(key));
   }
