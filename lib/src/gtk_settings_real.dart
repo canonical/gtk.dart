@@ -15,7 +15,7 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   }
 
   @visibleForTesting
-  static const methodChannel = MethodChannel('gtk_settings');
+  static const methodChannel = MethodChannel('gtk/settings');
 
   final _controller = StreamController<String>.broadcast();
   static final Finalizer<StreamController<String>> _finalizer =

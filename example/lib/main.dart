@@ -61,13 +61,13 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (_) => GtkSettings(),
-      child: const GtkSettingsApp(),
+      child: const ExampleApp(),
     ),
   );
 }
 
-class GtkSettingsApp extends StatelessWidget {
-  const GtkSettingsApp({super.key});
+class ExampleApp extends StatelessWidget {
+  const ExampleApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,20 +77,63 @@ class GtkSettingsApp extends StatelessWidget {
         darkTheme: yaru.darkTheme,
         home: Scaffold(
           appBar: AppBar(
-            title: const Text('GtkSettings'),
+            title: const Text('gtk.dart'),
           ),
-          body: ListView.builder(
-            itemCount: properties.length,
-            itemBuilder: (context, index) => GtkSettingsTile(properties[index]),
-          ),
+          body: const ExamplePage(),
         ),
       ),
     );
   }
 }
 
-class GtkSettingsTile extends StatelessWidget {
-  const GtkSettingsTile(this.property, {super.key});
+class ExamplePage extends StatelessWidget {
+  const ExamplePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GtkApplication(
+      onCommandLine: (args) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('command-line'),
+            content: Text(args.toString()),
+            actions: [
+              OutlinedButton(
+                onPressed: Navigator.of(context).pop,
+                child: const Text('Close'),
+              ),
+            ],
+          ),
+        );
+      },
+      onOpen: (files, hint) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('open $hint'),
+            content: Column(
+              children: files.map((f) => Text(f)).toList(),
+            ),
+            actions: [
+              OutlinedButton(
+                onPressed: Navigator.of(context).pop,
+                child: const Text('Close'),
+              ),
+            ],
+          ),
+        );
+      },
+      child: ListView.builder(
+        itemCount: properties.length,
+        itemBuilder: (context, index) => SettingsTile(properties[index]),
+      ),
+    );
+  }
+}
+
+class SettingsTile extends StatelessWidget {
+  const SettingsTile(this.property, {super.key});
 
   final String property;
 

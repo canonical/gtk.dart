@@ -10,13 +10,17 @@ import 'package:mockito/mockito.dart';
 
 import 'test_utils.mocks.dart';
 
-Future<void> receiveMethodCall(String method, [dynamic arguments]) async {
+Future<void> receiveMethodCall(
+  String channel,
+  String method, [
+  dynamic arguments,
+]) async {
   const codec = StandardMethodCodec();
   final messenger =
       TestDefaultBinaryMessengerBinding.instance!.defaultBinaryMessenger;
 
   await messenger.handlePlatformMessage(
-    'gtk_settings',
+    channel,
     codec.encodeMethodCall(MethodCall(method, arguments)),
     (_) {},
   );
