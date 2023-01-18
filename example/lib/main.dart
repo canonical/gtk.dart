@@ -1,9 +1,7 @@
-import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:gtk_settings/gtk_settings.dart';
+import 'package:provider/provider.dart';
 import 'package:yaru/yaru.dart';
-
-const settings = GtkSettings();
 
 const properties = [
   kGtkAlternativeButtonOrder,
@@ -59,7 +57,14 @@ const properties = [
   kGtkXftRgba,
 ];
 
-void main() => runApp(const GtkSettingsApp());
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => GtkSettings(),
+      child: const GtkSettingsApp(),
+    ),
+  );
+}
 
 class GtkSettingsApp extends StatelessWidget {
   const GtkSettingsApp({super.key});
@@ -91,18 +96,10 @@ class GtkSettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      key: Key(property),
-      stream: StreamGroup.merge([
-        settings.getValue(property).asStream(),
-        settings.notifyValue(property),
-      ]),
-      builder: (context, snapshot) {
-        return ListTile(
-          title: Text(snapshot.data.toString()),
-          subtitle: Text(property),
-        );
-      },
+    final value = context.select((GtkSettings s) => s.getValue(property));
+    return ListTile(
+      title: Text(value.toString()),
+      subtitle: Text(property),
     );
   }
 }

@@ -1,4 +1,5 @@
 library gtk_settings;
 
 export 'src/constants.dart';
-export 'src/settings.dart';
+export 'src/gtk_settings_stub.dart'
+    if (dart.library.ffi) 'src/gtk_settings_real.dart';
