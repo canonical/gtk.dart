@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 
-import 'gtk_settings_mixin.dart';
+import 'gtk_settings.dart';
 
-class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
+class GtkSettingsImpl with ChangeNotifier implements GtkSettings {
   @override
   Object? getValue(String key) => null;
 

@@ -4,7 +4,6 @@ import 'package:ffi/ffi.dart' as ffi;
 import 'package:meta/meta.dart';
 
 import 'libgtk.g.dart';
-export 'libgtk.g.dart';
 
 LibGtk? _lib;
 LibGtk get lib => _lib ??= LibGtk(ffi.DynamicLibrary.open('libgtk-3.so.0'));
