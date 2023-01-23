@@ -1,3 +1,7 @@
+## 2.0.0-beta.1
+
+- Made `GtkSettings` mockable.
+
 ## 2.0.0-beta.0
 
 - Re-purpose this package to be a collection of non-visual GTK+ utilities for
