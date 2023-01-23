@@ -5,11 +5,12 @@ import 'package:ffi/ffi.dart' as ffi;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'gtk_settings_mixin.dart';
+import 'gtk_settings.dart';
 import 'libgtk.dart';
+import 'libgtk.g.dart' as ffi;
 
-class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
-  GtkSettings() {
+class GtkSettingsImpl with ChangeNotifier implements GtkSettings {
+  GtkSettingsImpl() {
     methodChannel.setMethodCallHandler(_handleMethodCall);
     _finalizer.attach(this, _controller, detach: this);
   }
@@ -25,7 +26,7 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   Object? getValue(String key) {
     final settings = lib.gtk_settings_get_default();
     return ffi.using((arena) {
-      final gvalue = arena<GValue>();
+      final gvalue = arena<ffi.GValue>();
       lib.g_object_get_property(
         settings.cast(),
         key.toNativeUtf8(allocator: arena).cast(),
@@ -56,8 +57,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setBoolValue(String key, bool value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_BOOLEAN);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_BOOLEAN);
       lib.g_value_set_boolean(gvalue, value ? 1 : 0);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
@@ -66,8 +67,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setCharValue(String key, int value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_CHAR);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_CHAR);
       lib.g_value_set_schar(gvalue, value);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
@@ -76,8 +77,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setUCharValue(String key, int value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_UCHAR);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_UCHAR);
       lib.g_value_set_uchar(gvalue, value);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
@@ -86,8 +87,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setIntValue(String key, int value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_INT);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_INT);
       lib.g_value_set_int(gvalue, value);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
@@ -96,8 +97,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setUIntValue(String key, int value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_UINT);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_UINT);
       lib.g_value_set_uint(gvalue, value);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
@@ -106,8 +107,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setLongValue(String key, int value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_LONG);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_LONG);
       lib.g_value_set_long(gvalue, value);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
@@ -116,8 +117,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setULongValue(String key, int value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_ULONG);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_ULONG);
       lib.g_value_set_ulong(gvalue, value);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
@@ -126,8 +127,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setInt64Value(String key, int value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_INT64);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_INT64);
       lib.g_value_set_int64(gvalue, value);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
@@ -136,8 +137,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setUInt64Value(String key, int value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_UINT64);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_UINT64);
       lib.g_value_set_uint64(gvalue, value);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
@@ -146,8 +147,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setFloatValue(String key, double value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_FLOAT);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_FLOAT);
       lib.g_value_set_float(gvalue, value);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
@@ -156,8 +157,8 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setDoubleValue(String key, double value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_DOUBLE);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_DOUBLE);
       lib.g_value_set_double(gvalue, value);
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
@@ -166,15 +167,15 @@ class GtkSettings extends ChangeNotifier with GtkSettingsMixin {
   @override
   void setStringValue(String key, String value) {
     ffi.using((arena) {
-      final gvalue = arena<GValue>();
-      lib.g_value_init(gvalue, G_TYPE_STRING);
+      final gvalue = arena<ffi.GValue>();
+      lib.g_value_init(gvalue, ffi.G_TYPE_STRING);
       final string = value.toNativeUtf8(allocator: arena);
       lib.g_value_set_string(gvalue, string.cast());
       _setValue(key.toNativeUtf8(allocator: arena), gvalue);
     });
   }
 
-  void _setValue(ffi.Pointer<ffi.Utf8> key, ffi.Pointer<GValue> gvalue) {
+  void _setValue(ffi.Pointer<ffi.Utf8> key, ffi.Pointer<ffi.GValue> gvalue) {
     final settings = lib.gtk_settings_get_default();
     lib.g_object_set_property(settings.cast(), key.cast(), gvalue);
   }
