@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'gtk_settings_stub.dart' if (dart.library.ffi) 'gtk_settings_real.dart';
 
 abstract class GtkSettings implements ChangeNotifier {
-  factory GtkSettings() => GtkSettingsImpl();
+  factory GtkSettings() = GtkSettingsImpl;
   Object? getValue(String key);
   Stream<Object?> notifyValue(String key);
   void setBoolValue(String key, bool value);
