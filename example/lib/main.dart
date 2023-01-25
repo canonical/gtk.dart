@@ -139,7 +139,7 @@ class SettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final value = context.select((GtkSettings s) => s.getValue(property));
+    final value = context.select((GtkSettings s) => s.getProperty(property));
     return ListTile(
       title: Text(value.toString()),
       subtitle: Text(property),

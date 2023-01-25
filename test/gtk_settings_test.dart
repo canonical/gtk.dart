@@ -17,22 +17,22 @@ void main() {
 
       final settings = GtkSettings();
 
-      expect(settings.getValue('boolean'), true);
-      settings.setValue('boolean', false);
-      expect(settings.getValue('boolean'), false);
+      expect(settings.getProperty('boolean'), true);
+      settings.setProperty('boolean', false);
+      expect(settings.getProperty('boolean'), false);
 
       var wasNotified = 0;
       var expectedNotified = 0;
       settings.addListener(() => ++wasNotified);
 
       settings
-          .notifyValue('boolean')
+          .notifyProperty('boolean')
           .listen(expectAsync1((value) => expect(value, false), count: 1));
       await receiveMethodCall('gtk/settings', 'notify', 'boolean');
       expect(wasNotified, ++expectedNotified);
 
-      settings.resetValue('boolean');
-      expect(settings.getValue('boolean'), isNull);
+      settings.resetProperty('boolean');
+      expect(settings.getProperty('boolean'), isNull);
     });
   });
 
@@ -45,22 +45,22 @@ void main() {
 
       final settings = GtkSettings();
 
-      expect(settings.getValue('int'), -123456789);
-      settings.setValue('int', -987654321);
-      expect(settings.getValue('int'), -987654321);
+      expect(settings.getProperty('int'), -123456789);
+      settings.setProperty('int', -987654321);
+      expect(settings.getProperty('int'), -987654321);
 
       var wasNotified = 0;
       var expectedNotified = 0;
       settings.addListener(() => ++wasNotified);
 
       settings
-          .notifyValue('int')
+          .notifyProperty('int')
           .listen(expectAsync1((value) => expect(value, -987654321), count: 1));
       await receiveMethodCall('gtk/settings', 'notify', 'int');
       expect(wasNotified, ++expectedNotified);
 
-      settings.resetValue('int');
-      expect(settings.getValue('int'), isNull);
+      settings.resetProperty('int');
+      expect(settings.getProperty('int'), isNull);
     });
   });
 
@@ -73,22 +73,22 @@ void main() {
 
       final settings = GtkSettings();
 
-      expect(settings.getValue('double'), 123456.789);
-      settings.setValue('double', 789012.345);
-      expect(settings.getValue('double'), 789012.345);
+      expect(settings.getProperty('double'), 123456.789);
+      settings.setProperty('double', 789012.345);
+      expect(settings.getProperty('double'), 789012.345);
 
       var wasNotified = 0;
       var expectedNotified = 0;
       settings.addListener(() => ++wasNotified);
 
       settings
-          .notifyValue('double')
+          .notifyProperty('double')
           .listen(expectAsync1((value) => expect(value, 789012.345), count: 1));
       await receiveMethodCall('gtk/settings', 'notify', 'double');
       expect(wasNotified, ++expectedNotified);
 
-      settings.resetValue('double');
-      expect(settings.getValue('double'), isNull);
+      settings.resetProperty('double');
+      expect(settings.getProperty('double'), isNull);
     });
   });
 
@@ -101,22 +101,22 @@ void main() {
 
       final settings = GtkSettings();
 
-      expect(settings.getValue('string'), 'foo');
-      settings.setValue('string', 'bar');
-      expect(settings.getValue('string'), 'bar');
+      expect(settings.getProperty('string'), 'foo');
+      settings.setProperty('string', 'bar');
+      expect(settings.getProperty('string'), 'bar');
 
       var wasNotified = 0;
       var expectedNotified = 0;
       settings.addListener(() => ++wasNotified);
 
       settings
-          .notifyValue('string')
+          .notifyProperty('string')
           .listen(expectAsync1((value) => expect(value, 'bar'), count: 1));
       await receiveMethodCall('gtk/settings', 'notify', 'string');
       expect(wasNotified, ++expectedNotified);
 
-      settings.resetValue('string');
-      expect(settings.getValue('string'), isNull);
+      settings.resetProperty('string');
+      expect(settings.getProperty('string'), isNull);
 
       await receiveMethodCall('gtk/settings', 'notify', 'other');
       expect(wasNotified, ++expectedNotified);

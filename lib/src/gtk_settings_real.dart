@@ -23,12 +23,12 @@ class GtkSettingsImpl with ChangeNotifier implements GtkSettings {
       Finalizer((controller) => controller.close());
 
   @override
-  Object? getValue(String key) {
+  Object? getProperty(String name) {
     return ffi.using((arena) {
       final value = arena<ffi.GValue>();
       lib.g_object_get_property(
         lib.gtk_settings_get_default().cast(),
-        key.toNativeUtf8(allocator: arena).cast(),
+        name.toNativeUtf8(allocator: arena).cast(),
         value,
       );
       return value.toDartObject();
@@ -36,10 +36,10 @@ class GtkSettingsImpl with ChangeNotifier implements GtkSettings {
   }
 
   @override
-  Stream<Object?> notifyValue(String key) {
+  Stream<Object?> notifyProperty(String name) {
     return _controller.stream
-        .where((event) => event == key)
-        .map((event) => getValue(key));
+        .where((event) => event == name)
+        .map((event) => getProperty(name));
   }
 
   Future<dynamic> _handleMethodCall(MethodCall call) async {
@@ -54,22 +54,22 @@ class GtkSettingsImpl with ChangeNotifier implements GtkSettings {
   }
 
   @override
-  void setValue(String key, Object value) {
+  void setProperty(String name, Object value) {
     ffi.using((arena) {
       lib.g_object_set_property(
         lib.gtk_settings_get_default().cast(),
-        key.toNativeUtf8(allocator: arena).cast(),
+        name.toNativeUtf8(allocator: arena).cast(),
         value.toNativeGValue(allocator: arena),
       );
     });
   }
 
   @override
-  void resetValue(String key) {
+  void resetProperty(String name) {
     ffi.using((arena) {
       lib.gtk_settings_reset_property(
         lib.gtk_settings_get_default().cast(),
-        key.toNativeUtf8(allocator: arena).cast(),
+        name.toNativeUtf8(allocator: arena).cast(),
       );
     });
   }
