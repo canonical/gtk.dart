@@ -1,3 +1,8 @@
+## 2.0.0
+
+- GSettings: adjust naming to closer follow GTK
+- GSettings: replace setXxxValue() with setValue()
+
 ## 2.0.0-beta.1
 
 - Made `GtkSettings` mockable.
