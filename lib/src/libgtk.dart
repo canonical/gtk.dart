@@ -12,7 +12,7 @@ LibGtk get lib => _lib ??= LibGtk(ffi.DynamicLibrary.open('libgtk-3.so.0'));
 void overrideLibGtkForTesting(LibGtk lib) => _lib = lib;
 
 extension GValueX on ffi.Pointer<GValue> {
-  Object? toDart() {
+  Object? toDartObject() {
     switch (ref.g_type) {
       case G_TYPE_BOOLEAN:
         return lib.g_value_get_boolean(this) != 0;
@@ -40,5 +40,35 @@ extension GValueX on ffi.Pointer<GValue> {
         return lib.g_value_get_string(this).cast<ffi.Utf8>().toDartString();
     }
     return null;
+  }
+}
+
+extension ObjectX on Object {
+  ffi.Pointer<GValue> toNativeGValue({required ffi.Allocator allocator}) {
+    switch (runtimeType) {
+      case bool:
+        final gvalue = allocator<GValue>();
+        lib.g_value_init(gvalue, G_TYPE_BOOLEAN);
+        lib.g_value_set_boolean(gvalue, this as bool ? 1 : 0);
+        return gvalue;
+      case int:
+        final gvalue = allocator<GValue>();
+        lib.g_value_init(gvalue, G_TYPE_INT64);
+        lib.g_value_set_int64(gvalue, this as int);
+        return gvalue;
+      case double:
+        final gvalue = allocator<GValue>();
+        lib.g_value_init(gvalue, G_TYPE_DOUBLE);
+        lib.g_value_set_double(gvalue, this as double);
+        return gvalue;
+      case String:
+        final gvalue = allocator<GValue>();
+        lib.g_value_init(gvalue, G_TYPE_STRING);
+        lib.g_value_set_string(
+            gvalue, (this as String).toNativeUtf8(allocator: allocator).cast());
+        return gvalue;
+      default:
+        throw UnsupportedError('Unsupported type: $runtimeType');
+    }
   }
 }
