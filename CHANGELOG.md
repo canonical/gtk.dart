@@ -1,3 +1,7 @@
+## 2.1.0
+
+- Migrate to Flutter 3.10 and Dart 3.0
+
 ## 2.0.0
 
 - GSettings: adjust naming to closer follow GTK

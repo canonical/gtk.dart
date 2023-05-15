@@ -3,7 +3,7 @@ description: GTK+ utilities for Flutter Linux applications.
 homepage: https://github.com/ubuntu-flutter-community/gtk.dart
 repository: https://github.com/ubuntu-flutter-community/gtk.dart
 issue_tracker: https://github.com/ubuntu-flutter-community/gtk.dart/issues
-version: 2.0.0
+version: 2.1.0
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
