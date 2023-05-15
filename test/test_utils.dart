@@ -18,7 +18,7 @@ Future<void> receiveMethodCall(
 ]) async {
   const codec = StandardMethodCodec();
   final messenger =
-      TestDefaultBinaryMessengerBinding.instance!.defaultBinaryMessenger;
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
 
   await messenger.handlePlatformMessage(
     channel,
