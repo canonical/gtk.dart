@@ -13,6 +13,11 @@ compiler-opts:
   - '-I/usr/include/gtk-3.0'
   - '-I/usr/include/glib-2.0'
   - '-I/usr/lib/x86_64-linux-gnu/glib-2.0/include'
+  - '-I/usr/include/pango-1.0'
+  - '-I/usr/include/harfbuzz'
+  - '-I/usr/include/cairo'
+  - '-I/usr/include/gdk-pixbuf-2.0'
+  - '-I/usr/include/atk-1.0'
 exclude-all-by-default: true
 functions:
   include:
@@ -23,6 +28,13 @@ functions:
     - 'g_value_init'
     - 'g_value_get_.*'
     - 'g_value_set_.*'
+    - 'gtk_icon_theme_get_default'
+    - 'gtk_icon_theme_new'
+    - 'gtk_icon_theme_set_custom_theme'
+    - 'gtk_icon_theme_lookup_icon_for_scale'
+    - 'gtk_icon_info_get_filename'
+    - 'gtk_icon_info_free'
+    - 'g_object_unref'
   exclude:
     # deprecated
     - 'g_value_get_char'
@@ -30,13 +42,19 @@ functions:
 macros:
   include:
     - 'G_TYPE_.*'
+    - 'GTK_ICON_LOOKUP_.*'
 structs:
   include:
     - '_GtkSettings'
     - '_GObject'
     - '_GValue'
+    - '_GtkIconTheme'
+    - '_GtkIconInfo'
 typedefs:
   include:
     - 'GtkSettings'
     - 'GObject'
     - 'GValue'
+    - 'GtkIconTheme'
+    - 'GtkIconInfo'
+    - 'GtkIconLookupFlags'
