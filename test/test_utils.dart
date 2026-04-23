@@ -36,10 +36,16 @@ class MockGValue {
 MockLibGtk mockLibGtk({
   required ffi.Allocator allocator,
   required Map<String, MockGValue> properties,
+  String? themeName,
+  String? iconName,
+  String? iconFile,
 }) {
   final gtk = ffi.LibGtk(ffi.DynamicLibrary.open('libgtk-3.so.0'));
 
   final settings = ffi.Pointer<ffi.GtkSettings>.fromAddress(0x1234);
+  final themePointer = ffi.Pointer<ffi.GtkIconTheme>.fromAddress(0x1000);
+  final infoPointer = ffi.Pointer<ffi.GtkIconInfo>.fromAddress(0x2000);
+  final customThemePointer = ffi.Pointer<ffi.GtkIconTheme>.fromAddress(0x3000);
 
   final mock = MockLibGtk();
   overrideLibGtkForTesting(mock);
@@ -217,6 +223,28 @@ MockLibGtk mockLibGtk({
     final value = i.positionalArguments[0] as ffi.Pointer<ffi.GValue>;
     gtk.g_value_set_string(value, i.positionalArguments[1]);
   });
+
+  when(mock.gtk_icon_theme_get_default()).thenReturn(themePointer);
+
+  when(mock.gtk_settings_get_default()).thenReturn(settings);
+
+  when(mock.gtk_icon_theme_lookup_icon_for_scale(any, any, any, any, any))
+      .thenAnswer((inv) {
+    final namePtr = (inv.positionalArguments[1] as ffi.Pointer<ffi.Char>)
+        .cast<ffi.Utf8>()
+        .toDartString();
+    if (namePtr == iconName && iconFile != null) return infoPointer;
+    return ffi.nullptr;
+  });
+
+  if (iconFile != null) {
+    final filenamePtr =
+        iconFile.toNativeUtf8(allocator: allocator).cast<ffi.Char>();
+    when(mock.gtk_icon_info_get_filename(infoPointer)).thenReturn(filenamePtr);
+    when(mock.gtk_icon_info_free(infoPointer)).thenReturn(null);
+  }
+
+  when(mock.gtk_icon_theme_new()).thenReturn(customThemePointer);
 
   return mock;
 }
