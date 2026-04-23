@@ -6,6 +6,8 @@ import 'gtk_icon.dart';
 import 'libgtk.dart';
 import 'libgtk.g.dart' as ffi;
 
+const kGtkDefaultIconTheme = 'hicolor';
+
 /// Real implementation of [GtkIcon] that delegates to GTK.
 class GtkIconImpl implements GtkIcon {
   GtkIconImpl({String? themeName}) : _themeOverride = themeName;
@@ -23,7 +25,7 @@ class GtkIconImpl implements GtkIcon {
         value,
       );
       final obj = value.toDartObject();
-      return (obj is String && obj.isNotEmpty) ? obj : 'hicolor';
+      return (obj is String && obj.isNotEmpty) ? obj : kGtkDefaultIconTheme;
     });
   }
 
