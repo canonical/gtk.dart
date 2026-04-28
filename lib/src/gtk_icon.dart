@@ -12,6 +12,7 @@ abstract class GtkIcon {
   /// [size] and [scale], or `null` if no icon could be found.
   String? findIcon(String name, {int size = 48, int scale = 1});
 
-  /// The name of the icon theme used for lookups.
+  /// The name of the icon theme used for lookups. This corresponds to the
+  /// `gtk-icon-theme-name` GTK setting, or `hicolor` if nothing is set.
   String get themeName;
 }
