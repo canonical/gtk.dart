@@ -228,4 +228,64 @@ class MockLibGtk extends Mock implements LibGtk {
       Invocation.method(#g_value_set_string, [value, v_string]),
     );
   }
+
+  @override
+  ffi.Pointer<GtkIconTheme> gtk_icon_theme_get_default() {
+    return super.noSuchMethod(
+      Invocation.method(#gtk_icon_theme_get_default, []),
+      returnValue: ffi.nullptr,
+    );
+  }
+
+  @override
+  ffi.Pointer<GtkIconTheme> gtk_icon_theme_new() {
+    return super.noSuchMethod(
+      Invocation.method(#gtk_icon_theme_new, []),
+      returnValue: ffi.nullptr,
+    );
+  }
+
+  @override
+  void gtk_icon_theme_set_custom_theme(
+      ffi.Pointer? icon_theme, ffi.Pointer? theme_name) {
+    return super.noSuchMethod(Invocation.method(
+        #gtk_icon_theme_set_custom_theme, [icon_theme, theme_name]));
+  }
+
+  @override
+  ffi.Pointer<GtkIconInfo> gtk_icon_theme_lookup_icon_for_scale(
+    ffi.Pointer? icon_theme,
+    ffi.Pointer<ffi.Char>? icon_name,
+    int? size,
+    int? scale,
+    GtkIconLookupFlags? flags,
+  ) {
+    return super.noSuchMethod(
+      Invocation.method(#gtk_icon_theme_lookup_icon_for_scale,
+          [icon_theme, icon_name, size, scale, flags]),
+      returnValue: ffi.nullptr,
+    );
+  }
+
+  @override
+  ffi.Pointer<ffi.Char> gtk_icon_info_get_filename(ffi.Pointer? icon_info) {
+    return super.noSuchMethod(
+      Invocation.method(#gtk_icon_info_get_filename, [icon_info]),
+      returnValue: ffi.nullptr,
+    );
+  }
+
+  @override
+  void gtk_icon_info_free(ffi.Pointer? icon_info) {
+    return super.noSuchMethod(
+      Invocation.method(#gtk_icon_info_free, [icon_info]),
+    );
+  }
+
+  @override
+  void g_object_unref(ffi.Pointer? object) {
+    return super.noSuchMethod(
+      Invocation.method(#g_object_unref, [object]),
+    );
+  }
 }
