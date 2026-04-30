@@ -1,3 +1,7 @@
+## 2.2.0
+
+- Add `GtkIcon` wrapper for GTK icons
+
 ## 2.1.0
 
 - Migrate to Flutter 3.10 and Dart 3.0
