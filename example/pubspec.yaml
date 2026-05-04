@@ -8,7 +8,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  gtk: ^2.0.0
+  gtk: ^2.2.0
   provider: ^6.0.5
   yaru: ^10.1.0
 
